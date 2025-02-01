@@ -1,2 +1,2 @@
 # mobile.recipes
-A recipe app
+Just a fast recipe app

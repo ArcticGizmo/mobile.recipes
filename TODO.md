@@ -1,0 +1,4 @@
+- ability to add a recipe (text only)
+- add tags to recipe
+- add ingredients section
+- add images? (might not be needed)

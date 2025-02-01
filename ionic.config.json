@@ -1,0 +1,7 @@
+{
+  "name": "mobile.recipes",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "vue-vite"
+}

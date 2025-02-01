@@ -1,0 +1,26 @@
+.segment-button-checked::part(indicator-background) {
+  border-bottom: 4px solid var(--ion-color-primary-shade);
+}
+
+.toast-bottom {
+  transform: translateY(-50px);
+}
+
+.modal-fullscreen::part(content) {
+  width: 100vw;
+  height: 100vh;
+}
+
+.alert-wrapper .alert-button-group button.danger {
+  background-color: rgba(var(--ion-color-danger-rgb), 0.75);
+  color: var(--ion-color-light);
+}
+
+ion-searchbar {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+ion-searchbar {
+  height: 100%;
+}
