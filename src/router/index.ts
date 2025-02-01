@@ -12,6 +12,12 @@ const routes: Array<RouteRecordRaw> = [
     component: HomePage
   },
   {
+    path: '/recipes/:id',
+    name: 'View Recipe',
+    component: () => import('@/features/view/ViewRecipePage.vue'),
+    props: true
+  },
+  {
     path: '/:pathMatch(.*)*',
     redirect: '/'
   }

@@ -1,4 +1,4 @@
-import { ComputedRef, readonly, ref, watch } from 'vue';
+import { computed, ComputedRef, readonly, ref, watch } from 'vue';
 import { useKvStore } from './kvStore';
 
 export interface Recipe {
@@ -60,4 +60,14 @@ export const useRecipes = () => {
   const clear = () => set([]);
 
   return { recipes: readonly(recipes) as ComputedRef<Recipe[]>, add, remove, set, clear, replace, loading };
+};
+
+export const useRecipe = (id: string) => {
+  const { recipes, loading: recipesLoading } = useRecipes();
+
+  const recipe = computed(() => recipes.value.find(x => x.id === id));
+
+  const doesNotExist = computed(() => !recipesLoading.value && !recipe.value);
+
+  return { recipe, loading: recipesLoading, doesNotExist };
 };

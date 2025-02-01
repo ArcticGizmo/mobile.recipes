@@ -14,5 +14,5 @@
 <script setup lang="ts">
 import { IonCard, IonCardContent, IonCardHeader, IonLabel } from '@ionic/vue';
 
-defineProps<{ name: string }>();
+defineProps<{ id: string; name: string }>();
 </script>

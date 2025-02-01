@@ -1,5 +1,5 @@
 import { generateId } from '@/composables/identifier';
-import { useRecipes } from '@/composables/recipeStore';
+import { useRecipes } from '@/composables/recipes';
 import { useForm } from 'vee-validate';
 import * as yup from 'yup';
 
