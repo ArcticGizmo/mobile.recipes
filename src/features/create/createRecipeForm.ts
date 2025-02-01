@@ -8,7 +8,7 @@ export const useCreateRecipe = () => {
 
   const schema = yup.object({
     name: yup.string().required().label('Name'),
-    steps: yup.array().of(yup.string().required().min(1)).required().label('Steps')
+    steps: yup.array<string[]>().required().label('Steps')
   });
 
   type CreateRecipeForm = yup.InferType<typeof schema>;
@@ -17,7 +17,7 @@ export const useCreateRecipe = () => {
     validationSchema: schema,
     validateOnMount: false,
     initialValues: {
-      steps: []
+      steps: ['', '', '', '']
     }
   });
 

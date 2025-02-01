@@ -1,5 +1,5 @@
 import bullseyeArrow from '@mdi/svg/svg/bullseye-arrow.svg';
 
-import { add } from 'ionicons/icons';
+import { add, close } from 'ionicons/icons';
 
-export { add, bullseyeArrow };
+export { add, bullseyeArrow, close };

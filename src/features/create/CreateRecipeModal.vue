@@ -1,8 +1,11 @@
 <template>
   <BasePage title="Create Recipe" closable @close="onClose()">
     <div class="p-4">
-      <pre>{{ form.errors }}</pre>
       <TextInput name="name" label="Name" />
+
+      <!-- TODO: ingredients will go here -->
+
+      <TextareaArrayInput class="mt-8" name="steps" label="Steps" />
 
       <KeyboardSafeFooter>
         <IonButton class="px-4" expand="block" @click="onCreate()">Create</IonButton>
@@ -17,6 +20,7 @@ import BasePage from '@/views/BasePage.vue';
 import { IonButton, modalController } from '@ionic/vue';
 import { useCreateRecipe } from './createRecipeForm';
 import KeyboardSafeFooter from '@/components/KeyboardSafeFooter.vue';
+import TextareaArrayInput from '@/components/inputs/TextareaArrayInput.vue';
 
 const { create, form } = useCreateRecipe();
 
