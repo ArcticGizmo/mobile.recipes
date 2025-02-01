@@ -59,5 +59,5 @@ initialLoad();
 export const useRecipes = () => {
   const clear = () => set([]);
 
-  return { goals: readonly(recipes) as ComputedRef<Recipe[]>, add, remove, set, clear, replace, loading };
+  return { recipes: readonly(recipes) as ComputedRef<Recipe[]>, add, remove, set, clear, replace, loading };
 };

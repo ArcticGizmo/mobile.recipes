@@ -3,6 +3,7 @@
     <div class="p-4">
       <TextInput name="name" label="Name" />
 
+      <!-- TODO: tags will go here -->
       <!-- TODO: ingredients will go here -->
 
       <TextareaArrayInput class="mt-8" name="steps" label="Steps" />

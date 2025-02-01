@@ -25,7 +25,7 @@ export const useCreateRecipe = () => {
     add({
       id: generateId(),
       name: values.name,
-      steps: values.steps
+      steps: values.steps.filter(x => !!x)
     });
   };
 

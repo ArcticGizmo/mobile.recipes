@@ -1,5 +1,8 @@
 - ability to add a recipe (text only)
-- add tags to recipe
-- add ingredients section
+- fields
+  - steps
+  - tags
+  - ingredients
+  - equipment? (like predefined tags)
 - add images? (might not be needed)
-- ability to re-order steps
+- ability to re-order steps/ingredients
