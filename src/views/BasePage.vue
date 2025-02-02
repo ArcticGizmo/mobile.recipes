@@ -33,12 +33,13 @@
     </IonContent>
     <IonFooter :style="{ maxWidth, margin: 'auto' }">
       <div class="teleporting-footer"></div>
-      <slot name="footer"></slot>
+      <slot name="footer" v-bind="{ keyboardOpen: isOpen, keyboardClosed: isClosed }"></slot>
     </IonFooter>
   </IonPage>
 </template>
 
 <script setup lang="ts">
+import { useKeyboard } from '@/composables/keyboard';
 import {
   IonPage,
   IonContent,
@@ -54,6 +55,8 @@ import {
 } from '@ionic/vue';
 import { closeOutline } from 'ionicons/icons';
 import { computed } from 'vue';
+
+const { isOpen, isClosed } = useKeyboard();
 
 const props = defineProps<{
   title?: string;

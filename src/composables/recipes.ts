@@ -31,9 +31,9 @@ const initialLoad = async () => {
   }
 };
 
-const add = async (goal: Recipe) => {
-  const updatedRecipes = recipes.value.filter(x => x.id !== goal.id);
-  updatedRecipes.push(goal);
+const add = async (recipe: Recipe) => {
+  const updatedRecipes = recipes.value.filter(x => x.id !== recipe.id);
+  updatedRecipes.push(recipe);
   recipes.value = updatedRecipes;
 };
 
@@ -45,11 +45,11 @@ const set = async (newRecipes: Recipe[]) => {
   recipes.value = [...newRecipes];
 };
 
-const replace = async (goal: Recipe) => {
-  const index = recipes.value.findIndex(x => x.id === goal.id);
+const replace = async (recipe: Recipe) => {
+  const index = recipes.value.findIndex(x => x.id === recipe.id);
 
   if (index > -1) {
-    recipes.value[index] = goal;
+    recipes.value[index] = recipe;
   }
 };
 
