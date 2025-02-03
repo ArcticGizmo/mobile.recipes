@@ -14,10 +14,14 @@ const kvStore = useKvStore();
 const recipes = ref<Recipe[]>([]);
 const loading = ref(false);
 
-watch(recipes, async r => {
-  console.debug('[recipes] saving to disk');
-  await kvStore.saveJson(KEY, r);
-});
+watch(
+  recipes,
+  async r => {
+    console.debug('[recipes] saving to disk');
+    await kvStore.saveJson(KEY, r);
+  },
+  { deep: true }
+);
 
 const initialLoad = async () => {
   loading.value = true;
