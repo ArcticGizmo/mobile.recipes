@@ -8,6 +8,7 @@ export const useCreateRecipe = () => {
 
   const schema = yup.object({
     name: yup.string().required().label('Name'),
+    ingredients: yup.array<string[]>().required().label('Ingredients'),
     steps: yup.array<string[]>().required().label('Steps')
   });
 
@@ -17,6 +18,7 @@ export const useCreateRecipe = () => {
     validationSchema: schema,
     validateOnMount: false,
     initialValues: {
+      ingredients: [],
       steps: ['', '', '', '']
     }
   });
@@ -25,6 +27,7 @@ export const useCreateRecipe = () => {
     add({
       id: generateId(),
       name: values.name,
+      ingredients: values.ingredients.filter(x => !!x),
       steps: values.steps.filter(x => !!x)
     });
   };

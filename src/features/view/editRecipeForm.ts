@@ -8,6 +8,7 @@ export const useEditRecipeForm = () => {
   const schema = yup.object({
     id: yup.string().required(),
     name: yup.string().required().label('Name'),
+    ingredients: yup.array<string[]>().required().label('Ingredients'),
     steps: yup.array<string[]>().required().label('Steps')
   });
 
@@ -33,7 +34,8 @@ export const useEditRecipeForm = () => {
     await replace({
       id: values.id,
       name: values.name,
-      steps: [...values.steps]
+      ingredients: values.ingredients.filter(x => !!x),
+      steps: values.steps.filter(x => !!x)
     });
   };
 

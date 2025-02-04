@@ -11,9 +11,7 @@
     </div>
     <div v-else-if="recipe" class="p-4">
       <template v-if="isEditing">
-        <TextInput name="name" label="Name" />
-
-        <TextareaArrayInput class="mt-8" name="steps" label="Steps" />
+        <RecipeForm />
       </template>
       <template v-else>
         <div class="text-2xl mb-8 text-center">
@@ -56,6 +54,7 @@ import { alertController, IonButton, IonIcon, IonTextarea, useIonRouter } from '
 import { ref } from 'vue';
 import { useEditRecipeForm } from './editRecipeForm';
 import { pencil, trashBin } from 'ionicons/icons';
+import RecipeForm from '../RecipeForm.vue';
 
 const props = defineProps<{ id: string }>();
 

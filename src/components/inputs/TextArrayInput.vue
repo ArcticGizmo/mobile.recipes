@@ -7,37 +7,69 @@
       <IonReorderGroup :disabled="!swappable" @ion-item-reorder="onReorder">
         <IonItem v-for="(field, index) of fields" :key="index" lines="none">
           <IonReorder class="-ml-4 mr-2" slot="start" />
-          <TextareaInput class="my-2" :name="`${name}[${index}]`" :label="itemLabel?.(index) ?? `Item ${index + 1}`" />
+          <TextInput class="my-2" :name="`${name}[${index}]`">
+            <template v-if="$slots['label']" #label>
+              <slot name="label" v-bind="{ index }"></slot>
+            </template>
+          </TextInput>
           <IonButton slot="end" fill="clear" @click="onRemove(index, !!field.value)">
             <IonIcon slot="icon-only" :icon="close" color="danger" />
           </IonButton>
         </IonItem>
+        <IonItem lines="none">
+          <IonReorder class="-ml-4 mr-2 invisible" style="pointer-events: none" slot="start" />
+          <IonInput
+            ref="newInput"
+            v-model="newItem"
+            class="my-2"
+            :class="{ 'ion-invalid ion-touched': !!errorMessage }"
+            :placeholder="placeholder"
+            mode="md"
+            fill="outline"
+            @ion-change="onAddNewItem()"
+          />
+          <IonInput style="width: 0" :disabled="!newItem" @ion-focus="onFocus" />
+        </IonItem>
       </IonReorderGroup>
     </IonList>
-
-    <IonButton @click="push('')">
-      {{ addText || 'Add' }}
-    </IonButton>
   </div>
 </template>
 
 <script setup lang="ts">
-import { alertController, IonButton, IonIcon, IonItem, IonLabel, IonList, IonReorder, IonReorderGroup } from '@ionic/vue';
+import { alertController, IonButton, IonIcon, IonInput, IonItem, IonLabel, IonList, IonReorder, IonReorderGroup } from '@ionic/vue';
 import { IonReorderGroupCustomEvent, ItemReorderEventDetail } from '@ionic/core';
-import { useFieldArray } from 'vee-validate';
-import TextareaInput from './TextareaInput.vue';
+import { useField, useFieldArray } from 'vee-validate';
 import { close } from '@/icons';
+import TextInput from './TextInput.vue';
+import { ref, useTemplateRef } from 'vue';
 
 const props = defineProps<{
   name: string;
   label: string;
   swappable?: boolean;
-  itemLabel?: (index: number) => string;
-  addText?: string;
+  placeholder?: string;
   removeText?: string;
 }>();
 
+const newItem = ref('');
+const newInput = useTemplateRef('newInput');
+
 const { remove, push, fields, swap } = useFieldArray(() => props.name);
+const { errorMessage } = useField(() => props.name);
+
+const onAddNewItem = () => {
+  const value = newItem.value;
+  if (!value) {
+    return;
+  }
+
+  push(value);
+  newItem.value = '';
+};
+
+const onFocus = () => {
+  newInput.value?.$el.nativeInput.focus();
+};
 
 const onRemove = async (index: number, hasData: boolean) => {
   if (!hasData) {

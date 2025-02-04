@@ -1,6 +1,5 @@
 - ability to add a recipe (text only)
 - fields
-  - steps
   - tags
   - ingredients
   - equipment? (like predefined tags)
