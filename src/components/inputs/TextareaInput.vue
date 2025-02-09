@@ -11,6 +11,7 @@
     :type
     :rows
     :errorText
+    autocapitalize="sentences"
     auto-grow
     aria-multiline="true"
     @input="handleChange"

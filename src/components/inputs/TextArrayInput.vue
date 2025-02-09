@@ -24,6 +24,8 @@
             class="my-2"
             :class="{ 'ion-invalid ion-touched': !!errorMessage }"
             :placeholder="placeholder"
+            autocorrect="on"
+            autocapitalize="sentences"
             mode="md"
             fill="outline"
             @ion-change="onAddNewItem()"
