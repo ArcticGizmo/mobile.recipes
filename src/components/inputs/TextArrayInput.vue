@@ -56,7 +56,7 @@ const props = defineProps<{
 const newItem = ref('');
 const newInput = useTemplateRef('newInput');
 
-const { remove, push, fields, swap } = useFieldArray(() => props.name);
+const { remove, push, fields, move } = useFieldArray(() => props.name);
 const { errorMessage } = useField(() => props.name);
 
 const onAddNewItem = () => {
@@ -102,7 +102,7 @@ const onRemove = async (index: number, hasData: boolean) => {
 };
 
 const onReorder = (e: IonReorderGroupCustomEvent<ItemReorderEventDetail>) => {
-  swap(e.detail.from, e.detail.to);
+  move(e.detail.from, e.detail.to);
   e.detail.complete(fields.value);
 };
 </script>
