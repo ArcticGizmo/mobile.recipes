@@ -21,18 +21,30 @@
           </IonButton>
         </div>
 
-        <div class="text-lg underline mb-4">Steps</div>
-        <div v-for="(step, index) of recipe.steps" :key="index">
-          <IonTextarea
-            class="mt-2"
-            :model-value="step"
-            readonly
-            mode="md"
-            fill="outline"
-            label-placement="stacked"
-            :label="`Step ${index + 1}`"
-            auto-grow
-          />
+        <div v-if="recipe.ingredients.length" class="mb-8">
+          <div class="text-lg underline mb-4">Ingredients</div>
+          <IonList lines="full">
+            <IonItem v-for="(item, index) of recipe.ingredients" :key="index">
+              <div slot="start">•</div>
+              <IonLabel>{{ item }}</IonLabel>
+            </IonItem>
+          </IonList>
+        </div>
+
+        <div class="mb-4">
+          <div class="text-lg underline mb-4">Steps</div>
+          <div v-for="(step, index) of recipe.steps" :key="index">
+            <IonTextarea
+              class="mt-2"
+              :model-value="step"
+              readonly
+              mode="md"
+              fill="outline"
+              label-placement="stacked"
+              :label="`Step ${index + 1}`"
+              auto-grow
+            />
+          </div>
         </div>
       </template>
     </div>
@@ -46,11 +58,9 @@
 </template>
 
 <script setup lang="ts">
-import TextareaArrayInput from '@/components/inputs/TextareaArrayInput.vue';
-import TextInput from '@/components/inputs/TextInput.vue';
 import { useRecipe, useRecipes } from '@/composables/recipes';
 import BasePage from '@/views/BasePage.vue';
-import { alertController, IonButton, IonIcon, IonTextarea, useIonRouter } from '@ionic/vue';
+import { alertController, IonButton, IonIcon, IonItem, IonLabel, IonList, IonTextarea, useIonRouter } from '@ionic/vue';
 import { ref } from 'vue';
 import { useEditRecipeForm } from './editRecipeForm';
 import { pencil, trashBin } from 'ionicons/icons';

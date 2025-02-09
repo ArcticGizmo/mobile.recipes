@@ -16,16 +16,14 @@ export const useEditRecipeForm = () => {
 
   const form = useForm<UpdateRecipeForm>({
     validationSchema: schema,
-    validateOnMount: false,
-    initialValues: {
-      steps: ['', '', '', '']
-    }
+    validateOnMount: false
   });
 
   const initialise = (recipe: Recipe) => {
     form.setValues({
       id: recipe.id,
       name: recipe.name,
+      ingredients: [...recipe.ingredients],
       steps: [...recipe.steps]
     });
   };
